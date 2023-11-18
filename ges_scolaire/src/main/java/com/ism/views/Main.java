@@ -133,6 +133,27 @@ public class Main {
                     System.out.println("|ID|\t|LIBELLE|\n");
                         moduleService.listerModules().forEach(System.out::print);
                     break;
+                     case 7:
+                     sc.nextLine();
+                     
+                     System.out.println("Entrer le libelle  :");
+                       String lib=sc.nextLine();
+                    System.out.println("Entrer le nombre de place :");
+                    int place=sc.nextInt();
+                    String salleLibelle= "Salle "+lib;
+                     SalleEntity salleEntity=new SalleEntity(0,salleLibelle,place,false);
+                    //  System.out.println(moduleEntity);
+                    String notif= salleService.enregistrerSalle(salleEntity) ? "Enregistrement réussi" : "erreur d'enregistrement";
+                     System.out.println(notif);
+                    break;
+                    case 8:
+                    System.out.println("\t\t\tListe des Salles \n");
+                    // System.out.println("|ID|\t|LIBELLE|\t\t|PLACE|\t\n");
+                        salleService.listerSalles()
+                        .stream()
+                        .forEach(module->{
+                         System.out.println(String.format("%d => %s Nombre de place : %d",module.getId(),module.getLibelle(),module.getPlace() ));});
+                        break;
             
                 default:
                     break;
